@@ -7,12 +7,17 @@ class Controller
     @view = View.new
   end
 
+  def list_items
+    @view.list(@checkout.all)
+  end
+
   def scan
-    item = @view.get_item
+    list_items
+    item = @view.get_index
     @checkout.scan(item)
   end
 
   def total
-    @view.show_total
+    @view.show_total(@checkout.total)
   end
 end
